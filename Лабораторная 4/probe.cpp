@@ -7,8 +7,8 @@ struct list {
   list(int data) : value(data), next(nullptr) {}
 };
 
-void append(list *&head, int value) {
-  list *newlist = new list(value);
+void append(list *&head, int val) {
+  list *newlist = new list(val);
   if (head == nullptr) {
     head = newlist;
     return;
@@ -47,7 +47,7 @@ void display(list *head) {
   cout << endl;
 }
 
-void deletelist(list *&head) {
+void dellist(list *&head) {
   while (head != nullptr) {
     list *temp = head;
     head = head->next;
@@ -55,8 +55,11 @@ void deletelist(list *&head) {
   }
 }
 
+void delval(list *&head, int val) {}
+
 int main() {
   list *head = nullptr;
   addlist(head);
   display(head);
+  dellist(head);
 }
