@@ -55,11 +55,37 @@ void dellist(list *&head) {
   }
 }
 
-void delval(list *&head, int val) {}
+void delval(list *&head, int val) {
+  while (head != nullptr && head->value == val) {
+    list *temp = head;
+    head = head->next;
+    delete temp;
+  }
+
+  if (head == nullptr)
+    return;
+
+  list *current = head;
+  while (current->next != nullptr) {
+    if (current->next->value == val) {
+      list *temp = current->next;
+      current->next = temp->next;
+      delete temp;
+    } else {
+      current = current->next;
+    }
+  }
+}
 
 int main() {
+  int d;
   list *head = nullptr;
   addlist(head);
+  display(head);
+  cout << "Удалить из списка: ";
+  cin >> d;
+  cout << endl;
+  delval(head, d);
   display(head);
   dellist(head);
 }
